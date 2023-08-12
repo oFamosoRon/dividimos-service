@@ -12,8 +12,19 @@ import org.springframework.stereotype.Repository
 
 @Repository
 class LocalDatasourceImpl: LocalDatasource {
-    override fun getTable(tableId: String): Table {
-        TODO("Not yet implemented")
+    override fun getTable(tableId: String): Table? {
+        return if(tableId == "") {
+            null
+        } else {
+            Table(
+                id = "123456789",
+                total = 10.0,
+                serviceFee = 1.0,
+                couvertFee = 1.0,
+                guests = emptyList(),
+                dishes = emptyList()
+            )
+        }
     }
 
     override fun getGuests(): List<Guest> {
