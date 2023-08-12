@@ -8,7 +8,7 @@ internal class LocalDatasourceTest {
     private val localDatasource: LocalDatasource = LocalDatasourceImpl()
 
     @Test
-    fun shouldProvideATableObject() {
+    fun shouldProvideATableObjectOrNull() {
         //act
         val nullTable = localDatasource.getTable(tableId = "")
         val table = localDatasource.getTable(tableId = "123456789")
@@ -16,5 +16,25 @@ internal class LocalDatasourceTest {
         //assert
         Assertions.assertThat(nullTable).isNull()
         Assertions.assertThat(table).isNotNull
+    }
+
+    @Test
+    fun shouldProvideAListOfDishes() {
+        //act
+        val dishes = localDatasource.getDishes()
+
+        //assert
+        Assertions.assertThat(dishes).isEmpty()
+    }
+
+    @Test
+    fun shouldProvideADishObjectOrNull() {
+        //act
+        val dish = localDatasource.getDishesById(dishId = "123456789")
+        val nullDish = localDatasource.getDishesById(dishId = "")
+
+        //assert
+        Assertions.assertThat(nullDish).isNull()
+        Assertions.assertThat(dish).isNotNull
     }
 }
