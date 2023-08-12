@@ -37,4 +37,24 @@ internal class LocalDatasourceTest {
         Assertions.assertThat(nullDish).isNull()
         Assertions.assertThat(dish).isNotNull
     }
+
+    @Test
+    fun shouldProvideAListOfGuests() {
+        //act
+        val guest = localDatasource.getGuests()
+
+        //assert
+        Assertions.assertThat(guest).isEmpty()
+    }
+
+    @Test
+    fun shouldProvideAGuestObjectOrNull() {
+        //act
+        val guest = localDatasource.getGuestById(guestId = "123456789")
+        val nullGuest = localDatasource.getGuestById(guestId = "")
+
+        //assert
+        Assertions.assertThat(nullGuest).isNull()
+        Assertions.assertThat(guest).isNotNull
+    }
 }
