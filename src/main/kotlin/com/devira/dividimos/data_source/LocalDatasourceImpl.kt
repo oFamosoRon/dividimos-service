@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository
 * */
 
 @Repository
-class LocalDatasourceImpl : LocalDatasource {
+class LocalDatasourceImpl : Datasource {
     override fun getTable(tableId: String): Table? {
         return if (tableId == "") {
             null

@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test
 
 internal class LocalDatasourceTest {
 
-    private val localDatasource: LocalDatasource = LocalDatasourceImpl()
+    private val localDatasource: Datasource = LocalDatasourceImpl()
 
     @Test
     fun shouldProvideATableObjectOrNull() {

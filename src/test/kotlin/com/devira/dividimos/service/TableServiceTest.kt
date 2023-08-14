@@ -1,13 +1,13 @@
 package com.devira.dividimos.service
 
-import com.devira.dividimos.data_source.LocalDatasource
+import com.devira.dividimos.data_source.Datasource
 import io.mockk.mockk
 import io.mockk.verify
 import org.junit.jupiter.api.Test
 
 internal class TableServiceTest {
 
-    private val datasource: LocalDatasource = mockk(relaxed = true)
+    private val datasource: Datasource = mockk(relaxed = true)
     private val tableService = TableService(datasource = datasource)
 
     @Test
