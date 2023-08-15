@@ -24,7 +24,7 @@ internal class LocalDatasourceTest {
         val dishes = localDatasource.getDishes()
 
         //assert
-        Assertions.assertThat(dishes).isEmpty()
+        Assertions.assertThat(dishes).size().isGreaterThan(0)
     }
 
     @Test
@@ -44,7 +44,7 @@ internal class LocalDatasourceTest {
         val guest = localDatasource.getGuests()
 
         //assert
-        Assertions.assertThat(guest).isEmpty()
+        Assertions.assertThat(guest).size().isGreaterThan(0)
     }
 
     @Test
