@@ -11,25 +11,57 @@ import org.springframework.stereotype.Repository
 * */
 
 @Repository
-class LocalDatasourceImpl: LocalDatasource {
-    override fun getTable(tableId: String): Table {
-        TODO("Not yet implemented")
+class LocalDatasourceImpl : Datasource {
+    private val table = Table(
+        id = "123456789",
+        total = 10.0,
+        serviceFee = 1.0,
+        couvertFee = 1.0,
+        guests = emptyList(),
+        dishes = emptyList()
+    )
+
+    private val dish = Dish(
+        qnt = 1,
+        id = "123456789",
+        name = "dish",
+        price = 10.0,
+        tableId = "123456789"
+    )
+
+    private val guest = Guest(
+        id = "123456789",
+        name = "guest",
+        owes = 10.0,
+        email = null,
+        phone = null,
+        pictureUrl = null,
+        hasPaid = false,
+        itemsShared = emptyList()
+    )
+
+    override fun getTable(tableId: String): Table? {
+        return if (tableId == "") {
+            null
+        } else {
+            table
+        }
     }
 
-    override fun getGuests(): List<Guest> {
-        TODO("Not yet implemented")
+    override fun getGuests(): List<Guest> = listOf(guest)
+
+    override fun getGuestById(guestId: String): Guest? {
+        if (guestId == "") return null
+
+        return guest
     }
 
-    override fun getGuestById(guestId: String): Guest {
-        TODO("Not yet implemented")
-    }
+    override fun getDishes(): List<Dish> = listOf(dish)
 
-    override fun getDishes(): List<Dish> {
-        TODO("Not yet implemented")
-    }
+    override fun getDishesById(dishId: String): Dish? {
+        if (dishId == "") return null
 
-    override fun getDishesById(dishId: String): Dish {
-        TODO("Not yet implemented")
+        return dish
     }
 
 }
