@@ -10,7 +10,7 @@ class DishService(private val datasource: Datasource) {
     fun getDishes(): List<Dish> =
         datasource.getDishes()
 
-    fun getDishById(dishId: String): Dish? =
+    fun getDishById(dishId: String): Dish =
         datasource.getDishesById(dishId = dishId)
 
 }

@@ -9,6 +9,6 @@ interface Datasource {
     fun getGuests(): List<Guest>
     fun getGuestById(guestId: String): Guest?
     fun getDishes(): List<Dish>
-    fun getDishesById(dishId: String): Dish?
+    fun getDishesById(dishId: String): Dish
 
 }
