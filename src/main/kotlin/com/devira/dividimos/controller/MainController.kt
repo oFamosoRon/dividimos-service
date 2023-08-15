@@ -7,7 +7,6 @@ import com.devira.dividimos.service.DishService
 import com.devira.dividimos.service.GuestService
 import com.devira.dividimos.service.TableService
 import org.springframework.http.HttpStatus
-import org.springframework.http.HttpStatusCode
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.GetMapping
@@ -30,7 +29,7 @@ class MainController(
         tableService.getTable(tableId = tableId)
 
     @GetMapping("/guest")
-    fun getGuest(@RequestParam guestId: String): Guest? =
+    fun getGuest(@RequestParam guestId: String): Guest =
         guestService.getGuestById(guestId = guestId)
 
     @GetMapping("/dish")

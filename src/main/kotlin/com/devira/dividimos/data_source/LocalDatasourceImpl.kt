@@ -4,7 +4,6 @@ import com.devira.dividimos.model.Dish
 import com.devira.dividimos.model.Guest
 import com.devira.dividimos.model.Table
 import org.springframework.stereotype.Repository
-import kotlin.jvm.Throws
 
 /*
 *  TODO
@@ -51,8 +50,10 @@ class LocalDatasourceImpl : Datasource {
 
     override fun getGuests(): List<Guest> = listOf(guest)
 
-    override fun getGuestById(guestId: String): Guest? {
-        if (guestId == "") return null
+    override fun getGuestById(guestId: String): Guest {
+        if (guestId != "123456789") {
+            throw NoSuchElementException("Element not found")
+        }
 
         return guest
     }
@@ -60,11 +61,12 @@ class LocalDatasourceImpl : Datasource {
     override fun getDishes(): List<Dish> = listOf(dish)
 
     override fun getDishesById(dishId: String): Dish {
-        if (dishId == "123456789") {
-            return dish
+        if (dishId != "123456789") {
+
+            throw NoSuchElementException("Element not found")
         }
 
-        throw NoSuchElementException("Element not found")
+        return dish
     }
 
 }

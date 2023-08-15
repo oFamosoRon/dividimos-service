@@ -99,4 +99,15 @@ class MainControllerTest {
             }
     }
 
+    @Test
+    fun shouldReturnNotFoundIfNullGuest() {
+        mockMvc.get("/guest"){
+            param("guestId", invalidGuestId)
+        }
+            .andDo { print() }
+            .andExpect {
+                status { isNotFound() }
+            }
+    }
+
 }

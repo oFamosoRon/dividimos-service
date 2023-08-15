@@ -54,10 +54,11 @@ internal class LocalDatasourceTest {
     fun shouldProvideAGuestObjectOrNull() {
         //act
         val guest = localDatasource.getGuestById(guestId = "123456789")
-        val nullGuest = localDatasource.getGuestById(guestId = "")
 
         //assert
-        Assertions.assertThat(nullGuest).isNull()
+        assertThrows(NoSuchElementException::class.java) {
+            localDatasource.getDishesById("1111111")
+        }
         Assertions.assertThat(guest).isNotNull
     }
 }

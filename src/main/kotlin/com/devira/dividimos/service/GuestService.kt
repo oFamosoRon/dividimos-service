@@ -10,6 +10,6 @@ class GuestService(private val datasource: Datasource) {
     fun getGuests(): List<Guest> =
         datasource.getGuests()
 
-    fun getGuestById(guestId: String): Guest? =
+    fun getGuestById(guestId: String): Guest =
         datasource.getGuestById(guestId = guestId)
 }
