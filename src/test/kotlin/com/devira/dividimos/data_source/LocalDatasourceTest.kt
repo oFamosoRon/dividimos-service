@@ -2,6 +2,7 @@ package com.devira.dividimos.data_source
 
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.Assertions.assertThrows
 
 internal class LocalDatasourceTest {
 
@@ -28,13 +29,15 @@ internal class LocalDatasourceTest {
     }
 
     @Test
-    fun shouldProvideADishObjectOrNull() {
+    fun shouldProvideADishObjectOrThrowNotFoundException() {
         //act
         val dish = localDatasource.getDishesById(dishId = "123456789")
-        val nullDish = localDatasource.getDishesById(dishId = "")
 
         //assert
-        Assertions.assertThat(nullDish).isNull()
+        assertThrows(NoSuchElementException::class.java) {
+            localDatasource.getDishesById("1234111")
+        }
+
         Assertions.assertThat(dish).isNotNull
     }
 

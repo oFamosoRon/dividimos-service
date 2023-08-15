@@ -6,6 +6,10 @@ import com.devira.dividimos.model.Table
 import com.devira.dividimos.service.DishService
 import com.devira.dividimos.service.GuestService
 import com.devira.dividimos.service.TableService
+import org.springframework.http.HttpStatus
+import org.springframework.http.HttpStatusCode
+import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
@@ -17,6 +21,10 @@ class MainController(
     private val dishService: DishService,
 ) {
 
+    @ExceptionHandler(NoSuchElementException::class)
+    fun handleNotFound(e: NoSuchElementException): ResponseEntity<String> =
+        ResponseEntity(e.message, HttpStatus.NOT_FOUND)
+
     @GetMapping("/table")
     fun getTable(@RequestParam tableId: String): Table? =
         tableService.getTable(tableId = tableId)
@@ -26,7 +34,7 @@ class MainController(
         guestService.getGuestById(guestId = guestId)
 
     @GetMapping("/dish")
-    fun getDish(@RequestParam dishId: String): Dish? =
+    fun getDish(@RequestParam dishId: String): Dish =
         dishService.getDishById(dishId = dishId)
 
     @GetMapping("/guests")
