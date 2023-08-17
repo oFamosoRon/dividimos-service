@@ -16,6 +16,10 @@ class MainControllerTest {
     private val guestId = "123456789"
     private val dishId = "123456789"
 
+    private val invalidTableId = "1111111"
+    private val invalidGuestId = "1111111"
+    private val invalidDishId = "1111111"
+
     @Autowired
     private lateinit var mockMvc: MockMvc
 
@@ -81,6 +85,28 @@ class MainControllerTest {
                 status { isOk() }
                 content { contentType(MediaType.APPLICATION_JSON) }
                 jsonPath("$[0].id") { value("123456789") }
+            }
+    }
+
+    @Test
+    fun shouldReturnNotFoundIfNullDish() {
+        mockMvc.get("/dish"){
+            param("dishId", invalidDishId)
+        }
+            .andDo { print() }
+            .andExpect {
+                status { isNotFound() }
+            }
+    }
+
+    @Test
+    fun shouldReturnNotFoundIfNullGuest() {
+        mockMvc.get("/guest"){
+            param("guestId", invalidGuestId)
+        }
+            .andDo { print() }
+            .andExpect {
+                status { isNotFound() }
             }
     }
 

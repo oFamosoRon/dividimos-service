@@ -11,7 +11,9 @@ import org.springframework.stereotype.Repository
 * */
 
 @Repository
-class LocalDatasourceImpl : Datasource {
+class LocalDatasourceImplOld(
+
+) : LocalDatasourceOld {
     private val table = Table(
         id = "123456789",
         total = 10.0,
@@ -30,7 +32,7 @@ class LocalDatasourceImpl : Datasource {
     )
 
     private val guest = Guest(
-        id = "123456789",
+        id = 123456789,
         name = "guest",
         owes = 10.0,
         email = null,
@@ -50,16 +52,21 @@ class LocalDatasourceImpl : Datasource {
 
     override fun getGuests(): List<Guest> = listOf(guest)
 
-    override fun getGuestById(guestId: String): Guest? {
-        if (guestId == "") return null
+    override fun getGuestById(guestId: String): Guest {
+        if (guestId != "123456789") {
+            throw NoSuchElementException("Element not found")
+        }
 
         return guest
     }
 
     override fun getDishes(): List<Dish> = listOf(dish)
 
-    override fun getDishesById(dishId: String): Dish? {
-        if (dishId == "") return null
+    override fun getDishesById(dishId: String): Dish {
+        if (dishId != "123456789") {
+
+            throw NoSuchElementException("Element not found")
+        }
 
         return dish
     }
