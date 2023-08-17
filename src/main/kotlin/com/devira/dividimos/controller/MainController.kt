@@ -29,7 +29,7 @@ class MainController(
         tableService.getTable(tableId = tableId)
 
     @GetMapping("/guest")
-    fun getGuest(@RequestParam guestId: String): Guest =
+    fun getGuest(@RequestParam guestId: Long): Guest =
         guestService.getGuestById(guestId = guestId)
 
     @GetMapping("/dish")

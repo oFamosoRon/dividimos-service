@@ -11,7 +11,9 @@ import org.springframework.stereotype.Repository
 * */
 
 @Repository
-class LocalDatasourceImpl : Datasource {
+class LocalDatasourceImplOld(
+
+) : LocalDatasourceOld {
     private val table = Table(
         id = "123456789",
         total = 10.0,
@@ -30,7 +32,7 @@ class LocalDatasourceImpl : Datasource {
     )
 
     private val guest = Guest(
-        id = "123456789",
+        id = 123456789,
         name = "guest",
         owes = 10.0,
         email = null,

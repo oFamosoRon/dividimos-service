@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Assertions.assertThrows
 
 internal class LocalDatasourceTest {
 
-    private val localDatasource: Datasource = LocalDatasourceImpl()
+    private val localDatasource: LocalDatasourceOld = LocalDatasourceImplOld()
 
     @Test
     fun shouldProvideATableObjectOrNull() {
